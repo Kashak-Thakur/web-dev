@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Car Parking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        .parking-lot {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        .parking-space {
+            background-color: #ddd;
+            height: 100px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .parking-space.occupied {
+            background-color: #ff6347;
+        }
+        .parking-space.available {
+            background-color: #32cd32;
+        }
+        .parking-space span {
+            font-size: 20px;
+            color: white;
+        }
+        .info-section {
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+        .info-section p {
+            margin: 5px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Car Parking System</h1>
+    </header>
+
+    <div class="info-section">
+        <p>Total Parking Spaces: 36</p>
+        <p>Available: <span id="availableCount">30</span></p>
+        <p>Occupied: <span id="occupiedCount">6</span></p>
+    </div>
+
+    <div class="parking-lot">
+        <div class="parking-space available" data-id="1"><span>Space 1</span></div>
+        <div class="parking-space available" data-id="2"><span>Space 2</span></div>
+        <div class="parking-space available" data-id="3"><span>Space 3</span></div>
+        <div class="parking-space available" data-id="4"><span>Space 4</span></div>
+        <div class="parking-space available" data-id="5"><span>Space 5</span></div>
+        <div class="parking-space available" data-id="6"><span>Space 6</span></div>
+        <div class="parking-space occupied" data-id="7"><span>Space 7</span></div>
+        <div class="parking-space available" data-id="8"><span>Space 8</span></div>
+        <div class="parking-space available" data-id="9"><span>Space 9</span></div>
+        <div class="parking-space occupied" data-id="10"><span>Space 10</span></div>
+        <div class="parking-space available" data-id="11"><span>Space 11</span></div>
+        <div class="parking-space available" data-id="12"><span>Space 12</span></div>
+        <div class="parking-space available" data-id="13"><span>Space 13</span></div>
+        <div class="parking-space available" data-id="14"><span>Space 14</span></div>
+        <div class="parking-space occupied" data-id="15"><span>Space 15</span></div>
+        <div class="parking-space available" data-id="16"><span>Space 16</span></div>
+        <div class="parking-space available" data-id="17"><span>Space 17</span></div>
+        <div class="parking-space available" data-id="18"><span>Space 18</span></div>
+        <div class="parking-space occupied" data-id="19"><span>Space 19</span></div>
+        <div class="parking-space available" data-id="20"><span>Space 20</span></div>
+        <div class="parking-space available" data-id="21"><span>Space 21</span></div>
+        <div class="parking-space available" data-id="22"><span>Space 22</span></div>
+        <div class="parking-space available" data-id="23"><span>Space 23</span></div>
+        <div class="parking-space available" data-id="24"><span>Space 24</span></div>
+        <div class="parking-space available" data-id="25"><span>Space 25</span></div>
+        <div class="parking-space available" data-id="26"><span>Space 26</span></div>
+        <div class="parking-space occupied" data-id="27"><span>Space 27</span></div>
+        <div class="parking-space available" data-id="28"><span>Space 28</span></div>
+        <div class="parking-space available" data-id="29"><span>Space 29</span></div>
+        <div class="parking-space available" data-id="30"><span>Space 30</span></div>
+        <div class="parking-space available" data-id="31"><span>Space 31</span></div>
+        <div class="parking-space available" data-id="32"><span>Space 32</span></div>
+        <div class="parking-space occupied" data-id="33"><span>Space 33</span></div>
+        <div class="parking-space available" data-id="34"><span>Space 34</span></div>
+        <div class="parking-space available" data-id="35"><span>Space 35</span></div>
+        <div class="parking-space available" data-id="36"><span>Space 36</span></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Car Parking System. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Update the count dynamically
+        const availableSpaces = document.querySelectorAll('.parking-space.available').length;
+        const occupiedSpaces = document.querySelectorAll('.parking-space.occupied').length;
+
+        document.getElementById('availableCount').textContent = availableSpaces;
+        document.getElementById('occupiedCount').textContent = occupiedSpaces;
+
+        // Toggle parking space status on click
+        const spaces = document.querySelectorAll('.parking-space');
+        spaces.forEach(space => {
+            space.addEventListener('click', () => {
+                if (space.classList.contains('available')) {
+                    space.classList.remove('available');
+                    space.classList.add('occupied');
+                } else {
+                    space.classList.remove('occupied');
+                    space.classList.add('available');
+                }
+
+                // Update counts
+                const availableCount = document.querySelectorAll('.parking-space.available').length;
+                const occupiedCount = document.querySelectorAll('.parking-space.occupied').length;
+                document.getElementById('availableCount').textContent = availableCount;
+                document.getElementById('occupiedCount').textContent = occupiedCount;
+            });
+        });
+    </script>
+</body>
+</html>
